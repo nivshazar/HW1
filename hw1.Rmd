@@ -36,7 +36,7 @@ This assignemtnt is due: 22/3 23:59
 
 The dataset we'll explore in this assignment is the `passwords` dataset from [Information is Beautiful](https://informationisbeautiful.net/visualizations/top-500-passwords-visualized/) provided by the [Tidy Tuesday repo](https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-01-14).
 
-This dataset contains ~500 top passwrods ranked by popularity (variable `rank` where 1 is most popular). For each password we also get:
+This dataset contains ~500 top passwords ranked by popularity (variable `rank` where 1 is most popular). For each password we also get:
 
 * its `strength` (0 is weakest)
 * `category` - one of several categories, e.g. "fluffy"
