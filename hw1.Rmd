@@ -30,7 +30,7 @@ This is the first graded assignment where you actually have to *submit* a soluti
 * You can add other files but do not delete any files
 * Commit your work and push to your private Github repository as explained [here](https://github.com/DSApps-2021/Class_Slides/blob/master/Apps_of_DS_HW.pdf)
 
-This assignemtnt is due: 22/3 23:59
+This assignment is due: 25/3 23:59
 
 ### The `passwords` Dataset
 
@@ -143,7 +143,7 @@ Count how many passwords appear in each category. Do not use the `group_by()` fu
 ### YOUR CODE HERE ###
 ```
 
-Combine the above two outputs in a single pipe: a table with a category's name `category`, `n` the number of passwords in it and `mean_strength`, their mean strength without `NA` values. Now you *may* use `group_by()` and also have a look at [`n()`]():
+Combine the above two outputs in a single pipe: a table with a category's name `category`, `n` the number of passwords in it and `mean_strength`, their mean strength without `NA` values. Now you *may* use `group_by()` and also have a look at [`n()`](https://dplyr.tidyverse.org/reference/n.html):
 
 ```{r}
 # passwords %>%
@@ -329,4 +329,4 @@ Write a "tidy" function which accepts one of the numerical variables (unquoted) 
 
 ### Wrap up
 
-And that's it, you have shown you can wrangle data in the Tidyverse, in a concise, consistent and extensible manner. You also know which passowrds not to use. Good luck with the rest of the course!
+And that's it, you have shown you can wrangle data in the Tidyverse, in a concise, consistent and extensible manner. You also know which passwords not to use. Good luck with the rest of the course!
