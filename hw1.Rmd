@@ -1,5 +1,5 @@
 ---
-title: 'DSApps 2021 @ TAU: Assignment 1'
+title: 'DSApps 2022 @ TAU: Assignment 1'
 author: "Giora Simchoni"
 date: "`r Sys.Date()`"
 output: 
@@ -19,18 +19,18 @@ Welcome to Assignment 1 in R!
 This is the first graded assignment where you actually have to *submit* a solution. So please pay attention:
 
 * You can play with the assignment in Playground mode, but:
-* Only your private Github repository assigned to you by the course admin will be cloned and graded (Submission mode, see instructions [here](https://github.com/DSApps-2021/Class_Slides/blob/master/Apps_of_DS_HW.pdf))
+* Only your private Github repository assigned to you by the course admin will be cloned and graded (Submission mode, see instructions [here](https://github.com/DSApps-2022/Class_Slides/blob/master/Apps_of_DS_HW.pdf))
 * Like any other University assignment, your work should remain private
-* You need to `git clone` your private Github repository locally as explained [here](https://github.com/DSApps-2021/Class_Slides/blob/master/Apps_of_DS_HW.pdf)
+* You need to `git clone` your private Github repository locally as explained [here](https://github.com/DSApps-2022/Class_Slides/blob/master/Apps_of_DS_HW.pdf)
 * You need to uncomment the starter code inside the chunk, replace the `### YOUR CODE HERE ###`, run the chunk and see that you're getting the expected result
 * Pay attention to what you're asked to do and the required output
 * For example, using a *different* function than the one you were specifically asked to use, will decrease your score (unless you amaze me)
 * Your notebook should run smoothly from start to end if someone presses in the RStudio toolbar Run --> Restart R and Run All Chunks
 * When you're done knit the entire notebook into a html file, this is the file that would be graded
 * You can add other files but do not delete any files
-* Commit your work and push to your private Github repository as explained [here](https://github.com/DSApps-2021/Class_Slides/blob/master/Apps_of_DS_HW.pdf)
+* Commit your work and push to your private Github repository as explained [here](https://github.com/DSApps-2022/Class_Slides/blob/master/Apps_of_DS_HW.pdf)
 
-This assignment is due: 25/3 23:59
+This assignment is due: TBD
 
 ### The `passwords` Dataset
 
@@ -81,7 +81,7 @@ Print the number of rows and columns (no need to make it "pretty"):
 
 ### Basic `dplyr` Verbs
 
-##### (30 points)
+##### (20 points)
 
 Filter only passwords from the "fluffy" category (use only Tidyverse functions!):
 
@@ -116,7 +116,7 @@ Use the column you created to filter only passwords containing "123", use the [`
 # print(passwords_with_123)
 ```
 
-Use the `summarise()`[https://dplyr.tidyverse.org/reference/summarise.html] function to get the mean`strength` of passwords in the "food" category:
+Use the [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html) function to get the mean`strength` of passwords in the "food" category:
 
 ```{r}
 # passwords %>%
@@ -325,6 +325,38 @@ Write a "tidy" function which accepts one of the numerical variables (unquoted) 
 # 
 # # Usage
 # median_per_category(strength)
+```
+
+### Paper questions
+
+##### (10 points)
+
+Read Section 4.3 of Hadley Wickham's [Tidy Data](https://www.jstatsoft.org/article/view/v059i10) 2014 paper (of course you're invited to read the whole thing!).
+
+Let's see exactly what Wickham is talking about. Run this simple `lm` linear model:
+
+```{r}
+x1 <- rnorm(100)
+x2 <- rnorm(100)
+y <- x1 + x2 + rnorm(100, sd = 0.1)
+
+lm_obj <- lm(y ~ x1 + x2)
+```
+
+Now, without loading any additional packages, extract by code the p-value for `x2` from the linear model:
+
+```{r}
+### YOUR CODE HERE ###
+```
+
+Dreadful! Now Wickham says:
+
+> This knocks you out of the flow of analysis and makes it harder to combine the results from multiple models. I’m not currently aware of any packages that resolve this problem.
+
+But things have changed! Google "tidy lm output" and show how to extract that p-value **tidily** (now you can use additional libraries):
+
+```{r}
+### YOUR CODE HERE ###
 ```
 
 ### Wrap up
