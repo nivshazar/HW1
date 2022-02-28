@@ -249,8 +249,8 @@ passwords <- passwords %>%
 For each of the columns `time_to_crack_sec` and `offline_crack_sec` add another column with suffix "_log" (i.e. `time_to_crack_sec_log` and `offline_crack_log`), holding the log of that quantity (use `across()`!):
 
 ```{r}
-# passwords <- passwords %>%
-#   mutate(### YOUR CODE HERE ###)
+passwords <- passwords %>%
+   mutate(across(c("time_to_crack_sec","offline_crack_sec"),list(log=log)))
 ```
 
 Just so you won't get too bored, run this chunk to see the scatterplot of `time_to_crack_sec_log` by `strength`:
@@ -273,6 +273,8 @@ ggplot(passwords, aes(strength, rank)) +
 
 (What do you think is that very popular password (low `rank`) and very high `strength`? Do you agree with `strength` in this case?)
 
+'abc123' has very low rank 13, ans very high strength 32. i'm not agree with strength in this case because this is an exception, strength should not be above 10.
+
 And here is the distribution of `time_to_crack_sec_log` by `category`:
 
 ```{r}
@@ -290,7 +292,7 @@ ggplot(passwords, aes(category, time_to_crack_sec_log)) +
 Put a filtered version of the `passwords` dataset without `NA` values in `passwords_no_na`. Use the `drop_na()` function within a pipe:
 
 ```{r}
-# passwords_no_na <- ### YOUR CODE HERE ###
+passwords_no_na <- passwords %>% drop_na
 ```
 
 If you read carefully the columns definition in the [Tidy Tuesday repo](https://github.com/rfordatascience/tidytuesday/tree/master/data/2020/2020-01-14), you might have noticed that `strength` should cap at 10, whereas it clearly does not:
@@ -305,21 +307,21 @@ passwords %>%
 Let's assume we're bothered by that and would like to replace all values of `strength` above 10 with `NA`. Use the `replace` function in a pipe, taking inspiration from [this](https://stackoverflow.com/a/27909037/4095235) StackOverflow answer:
 
 ```{r}
-# passwords < passwords %>%
-#   mutate(### YOUR CODE HERE ###)
+passwords <- passwords %>%
+   mutate(strength=replace(strength,which(strength>10),NA))
 ```
 
 See that it worked by filtering only passwords with `NA` for `strength`, do this in a pipe (no starter code, I want you to be able to Google stuff you don't know):
 
 ```{r}
-### YOUR CODE HERE ###
+passwords %>% filter(is.na(strength))
 ```
 
 Now let's assume we regret this, but now deleted `strength` values are lost, and so we put the maximum value we know, 10, to all passwords for which we don't know what `strength` is. Use the [`replace_na()`](https://tidyr.tidyverse.org/reference/replace_na.html) function from the `tidyr` package:
 
 ```{r}
-# passwords <- passwords %>%
-#   replace_na(### YOUR CODE HERE ###)
+passwords <- passwords %>%
+   replace_na(list(strength=10))
 ```
 
 
