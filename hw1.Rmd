@@ -70,13 +70,13 @@ passwords <-read_csv("https://raw.githubusercontent.com/rfordatascience/tidytues
 Take a `glimpse()` at the data:
 
 ```{r}
-### YOUR CODE HERE ###
+glimpse(passwords)
 ```
 
 Print the number of rows and columns (no need to make it "pretty"):
 
 ```{r}
-### YOUR CODE HERE ###
+dim(passwords)
 ```
 
 ### Basic `dplyr` Verbs
@@ -86,19 +86,25 @@ Print the number of rows and columns (no need to make it "pretty"):
 Filter only passwords from the "fluffy" category (use only Tidyverse functions!):
 
 ```{r}
-### YOUR CODE HERE ###
+passwords %>%
+  filter(category == "fluffy")
 ```
 
 Filter only passwords in the "sport" and "cool-macho" and select only the `rank`, `password`, `category` and `strength` columns:
 
 ```{r}
-### YOUR CODE HERE ###
+passwords %>%
+  filter(category == "sport" | category == "cool-macho") %>%
+  select(rank,password,category,strength)
 ```
 
 Same as above, but sort by `strength`, from weakest to strongest (and do try to make this in a single pipe):
 
 ```{r}
-### YOUR CODE HERE ###
+passwords %>%
+  filter(category == "sport" | category == "cool-macho") %>%
+  select(rank,password,category,strength) %>%
+  arrange(strength)
 ```
 
 Create a new column `is_123` which will hold TRUE if the password contains the string "123" and FALSE otherwise. Use the [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) function and have a look at the [`str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) function from the `stringr` package, already loaded if you loaded the `tidyverse` package.
