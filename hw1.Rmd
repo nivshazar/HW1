@@ -110,24 +110,26 @@ passwords %>%
 Create a new column `is_123` which will hold TRUE if the password contains the string "123" and FALSE otherwise. Use the [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) function and have a look at the [`str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) function from the `stringr` package, already loaded if you loaded the `tidyverse` package.
 
 ```{r}
-# passwords <- passwords %>%
-#   mutate(### YOUR CODE HERE ###)
+passwords <- passwords %>%
+  mutate(is_123=str_detect(password,"123"))
 ```
 
 Use the column you created to filter only passwords containing "123", use the [`pull()`](https://dplyr.tidyverse.org/reference/pull.html) function to extract those passwords as a vector called `passwords_with_123` and print it:
 
 ```{r}
-# passwords_with_123 <- passwords %>% ### YOUR CODE HERE ###
-#
-# print(passwords_with_123)
+passwords_with_123 <- passwords %>% 
+  filter(is_123 == T) %>% 
+  pull(password)
+
+print(passwords_with_123)
 ```
 
 Use the [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html) function to get the mean`strength` of passwords in the "food" category:
 
 ```{r}
-# passwords %>%
-#   filter(### YOUR CODE HERE ###) %>%
-#   summarise(### YOUR CODE HERE ###)
+passwords %>%
+  filter(category=="food") %>%
+  summarise(avg_strength=mean(strength,na.rm = T))
 ```
 
 ### `group_by`, `summarize` and `count`
