@@ -139,24 +139,27 @@ passwords %>%
 Group the data by `category`, extract the mean strength in each category and sort by mean strength descending. Be sure to remove `NA` values if necessary:
 
 ```{r}
-# passwords %>%
-#   ### YOUR CODE HERE ### %>%
-#   summarise(### YOUR CODE HERE ###) %>%
-#   ### YOUR CODE HERE ###
+passwords %>%
+  group_by(category)%>%
+  summarise(avg_strength=mean(strength,na.rm = T)) %>%
+  arrange(desc(avg_strength))
 ```
 
 Count how many passwords appear in each category. Do not use the `group_by()` function.
 
 ```{r}
-### YOUR CODE HERE ###
+passwords %>% count(category, sort=T)
 ```
 
 Combine the above two outputs in a single pipe: a table with a category's name `category`, `n` the number of passwords in it and `mean_strength`, their mean strength without `NA` values. Now you *may* use `group_by()` and also have a look at [`n()`](https://dplyr.tidyverse.org/reference/n.html):
 
 ```{r}
-# passwords %>%
-#   ### YOUR CODE HERE ### %>%
-#   summarise(### YOUR CODE HERE ###)
+passwords %>%
+  group_by(category)%>%
+  summarise(n=n(),
+           avg_strength=mean(strength,na.rm = T)) %>%
+    arrange(desc(avg_strength))
+
 ```
 
 ### `distinct`, `case_when` and `rename`
