@@ -221,8 +221,8 @@ passwords <- passwords %>%
 On second thought I don't like the `value_seconds` column name, change it to something more meaningful, like `time_to_crack_sec`:
 
 ```{r}
-# passwords <- passwords %>%
-#   rename(### YOUR CODE HERE ###)
+passwords <- passwords %>%
+  rename(time_to_crack_sec=value_seconds)
 ```
 
 ### `select_if` and `across`
@@ -232,8 +232,8 @@ On second thought I don't like the `value_seconds` column name, change it to som
 See that the transformation you just made worked by selecting only numeric columns:
 
 ```{r}
-# passwords %>%
-#   select_if(### YOUR CODE HERE ###)
+passwords %>%
+   select_if(is.numeric)
 ```
 
 
@@ -242,8 +242,8 @@ Use the `recode_yes_no()` function below to have **all logical columns** contain
 ```{r}
 recode_yes_no <- function(bool) ifelse(bool, "Yes", "No")
 
-# passwords <- passwords %>%
-#   mutate(### YOUR CODE HERE ###)
+passwords <- passwords %>%
+   mutate(across(where(is.logical),recode_yes_no))
 ```
 
 For each of the columns `time_to_crack_sec` and `offline_crack_sec` add another column with suffix "_log" (i.e. `time_to_crack_sec_log` and `offline_crack_log`), holding the log of that quantity (use `across()`!):
