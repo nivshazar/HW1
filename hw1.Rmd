@@ -169,9 +169,11 @@ passwords %>%
 Print the `distinct()` (or `unique()`) categories of passwords containing "123":
 
 ```{r}
-# passwords %>%
-#   filter(### YOUR CODE HERE ###) %>%
-#   ### YOUR CODE HERE (can be more than 1 line) ###
+passwords %>%
+  filter(is_123==T) %>%
+  distinct(category)%>%
+  pull()
+
 ```
 
 Create a new column `time_unit_seconds` which will hold for each `time_unit` the number of **seconds** it represents (or `NA` if it is `NA`).
@@ -186,18 +188,34 @@ For your convenience:
 * a year is 31536000 seconds (with 365 days)
 
 ```{r}
-# passwords <- passwords %>%
-#   mutate(time_unit_seconds = case_when(
-#     ### YOUR CODE HERE ###
-#     TRUE ~ NA_real_
-#   ))
+passwords <- passwords %>%
+  mutate(time_unit_seconds = case_when(
+    str_detect(time_unit,"seconds")~1,
+    str_detect(time_unit,"minutes")~60,
+    str_detect(time_unit,"hours")~3600,
+    str_detect(time_unit,"days")~86400,
+    str_detect(time_unit,"weeks")~604800,
+    str_detect(time_unit,"months")~2629746,
+    str_detect(time_unit,"years")~31536000,
+    TRUE ~ NA_real_
+  ))
 ```
 
 Do the same as above (yes, again), now add a new column `value_seconds` which contains the "Time to crack by online guessing **in seconds**", using the `time_unit_seconds` column you have just created. Create the two columns with a single call to `mutate()`:
 
 ```{r}
-# passwords <- passwords %>%
-#   mutate(### YOUR CODE HERE ###)
+passwords <- passwords %>%
+  mutate(time_unit_seconds = case_when(
+    str_detect(time_unit,"seconds")~1,
+    str_detect(time_unit,"minutes")~60,
+    str_detect(time_unit,"hours")~3600,
+    str_detect(time_unit,"days")~86400,
+    str_detect(time_unit,"weeks")~604800,
+    str_detect(time_unit,"months")~2629746,
+    str_detect(time_unit,"years")~31536000,
+    TRUE ~ NA_real_),
+    value_seconds=time_unit_seconds*value
+  )
 ```
 
 On second thought I don't like the `value_seconds` column name, change it to something more meaningful, like `time_to_crack_sec`:
