@@ -334,15 +334,14 @@ Remember when we checked the mean strength for "food" passwords?
 Write a function which returns (in a `tibble`) for a given `categ` its mean `rank`, mean `strength` and mean `time_to_crack_sec_log`, ignoring `NA` values:
 
 ```{r}
-# category_mean_strength <- function(categ) {
-#   passwords %>%
-#     ### YOUR CODE HERE (can be more than 1 line) ###
-#     mutate(categ = categ) %>%
-#     select(categ, everything())
-# }
-#
-## Usage
-# category_mean_strength("fluffy")
+category_mean_strength <- function(categ) {
+  passwords %>%
+    filter(category==categ) %>%
+    mutate(categ = categ) %>%
+    select(categ, everything())
+}
+
+category_mean_strength("fluffy")
 ```
 
 Write a "tidy" function which accepts one of the numerical variables (unquoted) name and returns its *median* for every category, ignoring `NA` values. No need to check input:
@@ -377,7 +376,7 @@ lm_obj <- lm(y ~ x1 + x2)
 Now, without loading any additional packages, extract by code the p-value for `x2` from the linear model:
 
 ```{r}
-### YOUR CODE HERE ###
+
 ```
 
 Dreadful! Now Wickham says:
