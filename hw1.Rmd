@@ -353,7 +353,7 @@ Write a "tidy" function which accepts one of the numerical variables (unquoted) 
 #   ### YOUR CODE HERE (can be more than 1 line) ###
 # }
 # 
-# # Usage
+# Usage
 # median_per_category(strength)
 ```
 
